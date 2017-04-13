@@ -3,11 +3,14 @@ var request=require("request");
 var bodyParser=require("body-parser");
 
 //My native modules
-var config=require("./required/json/config.json");
 var blogger=require("./required/javascript/logger.js");
 var logger= blogger.logger;
 var error=require("./required/json/error.json");
 var app=express();
+
+//variables
+var key=process.env.KEY;
+var secret=process.env.SECRET;
 
 // Process application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({extended: false}));
@@ -38,7 +41,7 @@ app.get("/users",function(req,res){
 	request({
 	     url:"https://api.zoom.us/v1/user/list",
 	     method:"POST",
-		 qs:{api_key:config.key,api_secret:config.secret,data_type:"JSON"}
+		 qs:{api_key:key,api_secret:secret,data_type:"JSON"}
 		 },function(err,response,body){
 	          if(err){
 		          logger.error(err);
@@ -59,7 +62,7 @@ app.get("/meeting",function(req,res){
 		request({
 	     url:"https://api.zoom.us/v1/meeting/list",
 	     method:"POST",
-		 qs:{api_key:config.key,api_secret:config.secret,data_type:"JSON",host_id:req.query.id}
+		 qs:{api_key:key,api_secret:secret,data_type:"JSON",host_id:req.query.id}
 		 },function(err,response,body){
 	          if(err){
 		          logger.error(err);
@@ -81,7 +84,7 @@ app.get("/create",function(req,res){
 		request({
 	     url:"https://api.zoom.us/v1/meeting/create",
 	     method:"POST",
-		 qs:{api_key:config.key,api_secret:config.secret,data_type:"JSON",host_id:req.query.id,topic:req.query.topic,type:2}
+		 qs:{api_key:key,api_secret:secret,data_type:"JSON",host_id:req.query.id,topic:req.query.topic,type:2}
 		 },function(err,response,body){
 	          if(err){
 		          logger.error(err);
