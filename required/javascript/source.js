@@ -25,7 +25,7 @@ function ajaxRequest(method,url,callback){
 function getUsers(){
 	
 	if($("#list").is(":visible")==false){
-	ajaxRequest("GET","http://localhost:8080/users",createList);
+	ajaxRequest("GET","https://shielded-refuge-65245.herokuapp.com/users",createList);
 	}
 	$("#list").toggle();
 	
@@ -33,7 +33,7 @@ function getUsers(){
 
 function details(id){
 	if($("#meeting").is(":visible")==false){
-		ajaxRequest("GET","http://localhost:8080/meeting?id="+id,showMeeting);
+		ajaxRequest("GET","https://shielded-refuge-65245.herokuapp.com/meeting?id="+id,showMeeting);
 	}
 	$("#meeting").toggle();
 	
@@ -50,7 +50,7 @@ function submitMeeting(){
 		alert("Please Enter the title");
 		return;
 	}else{
-	ajaxRequest("GET","http://localhost:8080/create?id="+person.id+"&topic="+topic,successMeeting);
+	ajaxRequest("GET","https://shielded-refuge-65245.herokuapp.com/create?id="+person.id+"&topic="+topic,successMeeting);
 	}
 }
 
